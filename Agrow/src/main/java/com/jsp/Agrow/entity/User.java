@@ -1,6 +1,8 @@
 package com.jsp.Agrow.entity;
 
 
+import java.util.List;
+
 import com.jsp.Agrow.enums.UserType;
 
 import jakarta.persistence.CascadeType;
@@ -11,6 +13,7 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import lombok.Data;
 @Data
@@ -31,6 +34,12 @@ public class User {
 	private UserType type;
 	@OneToOne(cascade = CascadeType.ALL)
 	private Address address;
+	@OneToOne(cascade = CascadeType.ALL)
+	private Image image;
+	@OneToMany(cascade = CascadeType.ALL)
+	private List<Post> posts;
+	
+	
 	
 	
 }

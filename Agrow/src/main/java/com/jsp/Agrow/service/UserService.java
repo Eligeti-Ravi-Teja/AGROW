@@ -31,8 +31,8 @@ public class UserService {
 		User data = dao.FetchEmail(user.getEmail());
 //		System.out.println(data+"service");
 		if(data==null) {
-			System.out.println(data+"service");
-			System.out.println(user.getEmail());
+//			System.out.println(data+"service");
+//			System.out.println(user.getEmail());
 			User db=dao.registerUser(user);
 			SimpleMailMessage smp=new SimpleMailMessage();
 			smp.setFrom("eligetiraviteja267@gmail.com");
@@ -76,10 +76,12 @@ public class UserService {
 //		==============================update=====================================
 		public ResponseEntity<ResponseStructure<User>> updateUser(User user){
 			User data=dao.FetchEmail(user.getEmail());
+//			System.out.println(data.getEmail()+" from service");
 			if(data==null) {
 				throw new EmailDoesNotExist("You cant change your email");
 			}
 			else {
+				System.out.println("tring to update "+data.getEmail());
 				if(user.getId()==0) {
 					user.setId(data.getId());				
 					}
