@@ -15,7 +15,7 @@ public class UserDao {
 	
 //	-----------------------------------------------------------------------------------
 	public User registerUser(User user) {
-		System.out.println("register");
+//		System.out.println("register");
 		System.out.println(user.getEmail());
 		return repo.save(user);
 	}

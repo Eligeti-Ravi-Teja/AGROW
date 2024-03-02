@@ -15,19 +15,19 @@ public class PostDao {
 	PostRepo repo;
 	
 //	=====insert Image===========================================================
-	public Post registerUser(Post post) {
+	public Post createPost(Post post) {
 		return repo.save(post);
 	}
 //	==========================================================================
 	
 //	==================================update==========================================
-	public Post updateUser(Post post) {
+	public Post updatePost(Post post) {
 		return repo.save(post);
 	}
 //	=============================================================================
 	
 //============================Fetch by id===============================================
-	public Post findUserById(int id) {
+	public Post findPostById(int id) {
 		Optional<Post> s = repo.findById(id);
 		if(s.isPresent()) {
 			return s.get();
@@ -45,7 +45,7 @@ public class PostDao {
 //	=====================================================================================
 
 //	============================delete by id =========================================
-	public Post deleteUser(int id) {
+	public Post deletePost(int id) {
 		Optional<Post> data = repo.findById(id);
 		repo.deleteById(id);
 		return data.get();

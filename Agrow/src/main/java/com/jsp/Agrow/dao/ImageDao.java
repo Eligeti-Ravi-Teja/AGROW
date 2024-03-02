@@ -15,19 +15,19 @@ public class ImageDao {
 	ImageRepo repo;
 	
 //	=====insert Image===========================================================
-	public Image registerUser(Image image) {
+	public Image createImage(Image image) {
 		return repo.save(image);
 	}
 //	==========================================================================
 	
 //	==================================update==========================================
-	public Image updateUser(Image image) {
+	public Image updateImage(Image image) {
 		return repo.save(image);
 	}
 //	=============================================================================
 	
 //============================Fetch by id===============================================
-	public Image findUserById(int id) {
+	public Image findImageById(int id) {
 		Optional<Image> s = repo.findById(id);
 		if(s.isPresent()) {
 			return s.get();
@@ -45,7 +45,7 @@ public class ImageDao {
 //	=====================================================================================
 
 //	============================delete by id =========================================
-	public Image deleteUser(int id) {
+	public Image deleteImage(int id) {
 		Optional<Image> data = repo.findById(id);
 		repo.deleteById(id);
 		return data.get();

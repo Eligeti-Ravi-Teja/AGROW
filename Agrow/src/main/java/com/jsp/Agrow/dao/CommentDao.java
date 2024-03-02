@@ -15,19 +15,19 @@ public class CommentDao {
 	CommentRepo repo;
 	
 //	=====insert Image===========================================================
-	public Comment registerUser(Comment comment) {
+	public Comment createComment(Comment comment) {
 		return repo.save(comment);
 	}
 //	==========================================================================
 	
 //	==================================update==========================================
-	public Comment updateUser(Comment comment) {
+	public Comment updateComment(Comment comment) {
 		return repo.save(comment);
 	}
 //	=============================================================================
 	
 //============================Fetch by id===============================================
-	public Comment findUserById(int id) {
+	public Comment findCommentById(int id) {
 		Optional<Comment> s = repo.findById(id);
 		if(s.isPresent()) {
 			return s.get();
@@ -45,7 +45,7 @@ public class CommentDao {
 //	=====================================================================================
 
 //	============================delete by id =========================================
-	public Comment deleteUser(int id) {
+	public Comment deleteComment(int id) {
 		Optional<Comment> data = repo.findById(id);
 		repo.deleteById(id);
 		return data.get();
