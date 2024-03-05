@@ -16,6 +16,7 @@ import com.jsp.Agrow.dao.exception.EmailAlreadyRegistered;
 import com.jsp.Agrow.dao.exception.EmailDoesNotExist;
 import com.jsp.Agrow.dao.exception.PasswordIncorrect;
 import com.jsp.Agrow.dao.utils.ResponseStructure;
+import com.jsp.Agrow.entity.Image;
 import com.jsp.Agrow.entity.User;
 
 
@@ -175,10 +176,10 @@ public class UserService {
 				rs.setMessage("otp sent successfully");
 				rs.setStatus(HttpStatus.OK.value());
 				return new ResponseEntity<ResponseStructure<Integer>>(rs,HttpStatus.OK);
-			}
-			
-			
+			}	
 		}
+		
+
 		
 		
 	}

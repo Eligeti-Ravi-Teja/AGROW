@@ -16,5 +16,4 @@ public class Comment {
 	private String comment;
 	@OneToOne(cascade = CascadeType.ALL)
 	private User user;
-
 }

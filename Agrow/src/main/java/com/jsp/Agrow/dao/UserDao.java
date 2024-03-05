@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.jsp.Agrow.entity.Image;
 import com.jsp.Agrow.entity.User;
 import com.jsp.Agrow.repo.UserRepo;
 @Repository
@@ -55,4 +56,11 @@ public class UserDao {
 	public List<User> FetchAll(){
 		return repo.findAll();
 	}
+//	------------------------------------------------------------------------
+	
+	public User fetchUserByImage(Image image) {
+		return repo.fetchUserByImage(image);
+	}
+	
+
 }
