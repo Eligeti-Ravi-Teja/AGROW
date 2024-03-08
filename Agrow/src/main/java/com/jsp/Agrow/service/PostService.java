@@ -29,6 +29,7 @@ public class PostService {
 	UserDao udao;
 	@Autowired
 	ImageDao idao;
+
 //=====================================posting a post========================================	
 	public ResponseEntity<ResponseStructure<Post>> postData(int uid,MultipartFile file,String caption,String location) throws IOException{
 		 User user=udao.findUserById(uid);
@@ -72,6 +73,36 @@ public class PostService {
 		}
 		else {
 			throw new PostNotFound("post with id :"+id+" is not found");
+		}
+	}
+//	====================================================================================
+	
+//	========================Delete By Id================================================
+	public ResponseEntity<ResponseStructure<Post>> deleteById(int id){
+		Post post=dao.findPostById(id);
+		if(post!=null) {
+//			fetchAllUsers
+			List<User> users=udao.FetchAll();
+//			iterating over users
+			for(User u:users) {
+				List<Post> posts=u.getPosts();
+				if(posts.contains(post)) {
+				posts.remove(post);
+				udao.updateUser(u);
+				dao.deletePost(id);				
+				break;
+				}
+			}
+			ResponseStructure<Post> rs=new ResponseStructure<Post>();
+			rs.setMessage("post deleted");
+			rs.setData(post);
+			rs.setStatus(HttpStatus.OK.value());
+			
+			return new ResponseEntity<ResponseStructure<Post>>(rs,HttpStatus.OK);
+			
+		}
+		else {
+			throw new PostNotFound("No post with id :"+id);
 		}
 	}
 	

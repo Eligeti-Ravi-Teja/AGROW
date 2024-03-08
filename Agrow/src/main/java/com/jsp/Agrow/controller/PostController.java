@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -14,7 +15,6 @@ import com.jsp.Agrow.dao.utils.ResponseStructure;
 import com.jsp.Agrow.entity.Post;
 import com.jsp.Agrow.service.PostService;
 
-import lombok.Getter;
 
 @RestController
 public class PostController {
@@ -23,8 +23,8 @@ public class PostController {
 	
 //	======================createPost===================================================
 	@PostMapping("/createPost")
-	public ResponseEntity<ResponseStructure<Post>> createPost(@RequestParam int id,@RequestParam("img") MultipartFile file,String caption,String address) throws IOException{
-		return service.postData(id, file, caption, address);
+	public ResponseEntity<ResponseStructure<Post>> createPost(@RequestParam int id,@RequestParam("img") MultipartFile file,String caption,String location) throws IOException{
+		return service.postData(id, file, caption, location);
 	}
 //	===================================================================================
 	
@@ -32,6 +32,13 @@ public class PostController {
 	@GetMapping("/getPost")
 	public ResponseEntity<ResponseStructure<Post>> getPost(@RequestParam int id){
 		return service.getById(id);
+	}
+//	==================================================================================
+	
+//	==========================delete post=============================================
+	@DeleteMapping("/deletePost")
+	public ResponseEntity<ResponseStructure<Post>> deletePost(@RequestParam int id){
+		return service.deleteById(id);
 	}
 
 }
