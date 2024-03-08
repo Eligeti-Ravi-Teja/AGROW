@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.jsp.Agrow.dao.ImageDao;
 import com.jsp.Agrow.dao.utils.ResponseStructure;
 import com.jsp.Agrow.entity.User;
 import com.jsp.Agrow.service.UserService;
@@ -20,6 +21,8 @@ import com.jsp.Agrow.service.UserService;
 public class UserController {
 	@Autowired
 	UserService service;
+	
+	ImageDao dao;
 	
 //	register----------------------------------------------------------------
 	@PostMapping("/register")

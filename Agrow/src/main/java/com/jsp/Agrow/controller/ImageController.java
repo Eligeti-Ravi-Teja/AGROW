@@ -3,6 +3,9 @@ package com.jsp.Agrow.controller;
 import java.io.IOException;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.jsp.Agrow.dao.ImageDao;
 import com.jsp.Agrow.dao.utils.ResponseStructure;
 import com.jsp.Agrow.entity.Image;
 import com.jsp.Agrow.service.ImageService;
@@ -20,6 +24,9 @@ import com.jsp.Agrow.service.ImageService;
 public class ImageController {
 	@Autowired
 	ImageService service;
+	
+	@Autowired
+	ImageDao dao;
 	
 	
 //	=====================setProfile====================================================
@@ -35,7 +42,7 @@ public class ImageController {
 	
 //	========================fetch profile================================================
 	@GetMapping("/fetchimg")
-	public ResponseEntity<ResponseStructure<Image>> fetchImage(int id){
+	public ResponseEntity<byte[]> fetchImage(int id){
 		return service.fetchImage(id);
 	}
 //	==============================================================================
@@ -52,6 +59,9 @@ public class ImageController {
 	public ResponseEntity<ResponseStructure<Image>> deleteImg(@RequestParam int id){
 		return service.deleteImage(id);
 	}
+//	=====================================================================================
+	
+
 	
 
 }

@@ -3,7 +3,9 @@ package com.jsp.Agrow.service;
 import java.io.IOException;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -15,6 +17,8 @@ import com.jsp.Agrow.dao.exception.UserDoesNotExit;
 import com.jsp.Agrow.dao.utils.ResponseStructure;
 import com.jsp.Agrow.entity.Image;
 import com.jsp.Agrow.entity.User;
+
+import jakarta.mail.Header;
 
 @Service
 public class ImageService {
@@ -72,17 +76,13 @@ public class ImageService {
 //	=============================================================================
 	
 //	================================fetch by id========================================
-	public ResponseEntity<ResponseStructure<Image>> fetchImage(int id){
+	public ResponseEntity<byte[]> fetchImage(int id){
 		Image image = dao.findImageById(id);
 		if(image!=null) {
-			Image img = dao.findImageById(id);
-			ResponseStructure<Image> rs=new ResponseStructure<Image>();
-			rs.setData(img);
-			rs.setMessage("Image has been fetched");
-			rs.setStatus(HttpStatus.ACCEPTED.value());
-			return new ResponseEntity<ResponseStructure<Image>>(rs,HttpStatus.ACCEPTED);
-			
-			
+			byte[] img=dao.findImageById(id).getImage();
+	    	HttpHeaders headers=new HttpHeaders();
+	    	headers.setContentType(MediaType.IMAGE_JPEG);
+	    	return new ResponseEntity<>(img,headers,HttpStatus.OK);
 		}
 		else {
 			throw new UserDoesNotExit("User not found with id :"+id);
