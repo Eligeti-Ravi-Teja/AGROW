@@ -12,7 +12,7 @@ public interface UserRepo extends JpaRepository<User, Integer>{
 	public User fetchByEmail(String email);
 	
 	@Query("select e from User e where image=?1")
-	public User fetchUserByImage(Image image);
+	public User fetchUserByImage(Image image); 
 	
 
 }
