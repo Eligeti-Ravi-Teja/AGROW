@@ -4,8 +4,11 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -27,14 +30,14 @@ public class EquipmentController {
 	
 //	==================================fetch equipment by id===============================
 	@GetMapping("/fetchEquipment")
-	public ResponseEntity<ResponseStructure<Equipment>> fetchEquipment(int id){
+	public ResponseEntity<ResponseStructure<Equipment>> fetchEquipment(@RequestParam int id){
 		return service.findEquipById(id);
 	}
 //	=======================================================================================
 	
 //	====================fetchEquipmentByName=============================================
 	@GetMapping("/fetchEquipmentByName")
-	public ResponseEntity<ResponseStructure<Equipment>> fetchEquipByName(String name){
+	public ResponseEntity<ResponseStructure<List<Equipment>>> fetchEquipByName(@RequestParam String name){
 		return service.fetchEquipByName(name);
 	}
 //	=========================================================================
@@ -43,6 +46,20 @@ public class EquipmentController {
 	@GetMapping("/fetchAllEquipments")
 	public ResponseEntity<ResponseStructure<List<Equipment>>> fetchAllEquipments() {
 		return service.fetchAllEquipments();
+	}
+//	=================================================================================
+	
+//	===========================update Equipments===============================
+	@PutMapping("/updateEquipment")
+	public ResponseEntity<ResponseStructure<Equipment>> updateEquipment(@RequestBody Equipment equipment){
+		return service.updateEquipment(equipment);
+	}
+//	========================================================================================
+	
+//	===============================Delete Equipment=======================================
+	@DeleteMapping("/deleteEquipment")
+	public ResponseEntity<ResponseStructure<Equipment>> deleteEquipment(@RequestParam int id){
+		return service.deleteEquipment(id);
 	}
 	
 }

@@ -42,8 +42,15 @@ public class EquipmentDao {
 	
 	
 //	===========================Fetch By name==============================================
-	public Equipment fetchEquipByName(String name) {
+	public List<Equipment> fetchEquipByName(String name) {
 		return repo.fetchEquipByName(name);
 	}
 //	=====================================================================================
+	
+//	====================================================================================
+	public Equipment deleteEquipment(int id) {
+		Equipment e=fetchEquipById(id);
+		repo.delete(e);
+		return e;
+	}
 }
