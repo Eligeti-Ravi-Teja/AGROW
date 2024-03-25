@@ -32,7 +32,6 @@ public class RentalService {
 	EquipmentDao edao;
 	
 	@Autowired
-	@Lazy
 	PaymentHistoryDao pdao;
 	
 	@Autowired
